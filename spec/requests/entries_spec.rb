@@ -17,6 +17,28 @@ RSpec.describe '/entries', type: :request do
       expect(response).to have_http_status(:ok)
       expect(json_response).to eq(expected_response)
     end
+
+    context 'pagination' do
+      before do
+        30.times do
+          create(:entry)
+        end
+      end
+
+      it 'paginates entries' do
+        get entries_path
+        json_response = JSON.parse(response.body)
+
+        expect(json_response['entries'].length).to eq(25)
+      end
+
+      it 'can query page' do
+        get entries_path, params: { page: 2 }
+        json_response = JSON.parse(response.body)
+
+        expect(json_response['entries'].length).to eq(7)
+      end
+    end
   end
 
   describe 'create' do

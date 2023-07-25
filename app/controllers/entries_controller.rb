@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   def index
-    render json: { entries: Entry.all }, status: :ok
+    render json: { entries: Entry.page(params[:page]) }, status: :ok
   end
 
   def create

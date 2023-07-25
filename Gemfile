@@ -9,6 +9,7 @@ gem 'puma', '~> 5.0'
 gem 'dotenv-rails'
 gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'bootsnap', require: false
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry-rails'
